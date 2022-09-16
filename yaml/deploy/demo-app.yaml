@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
         - name: demo-app
-          image: ghcr.io/mosehsah/tanzu-devslam-spring/demo:latest
+          image: ghcr.io/USERNAME/tanzu-devslam-spring/demo:TAG
       imagePullSecrets:
       - name: dockerconfigjson-github-com    
 ---

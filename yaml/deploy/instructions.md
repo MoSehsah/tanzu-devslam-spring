@@ -11,12 +11,13 @@
 If your forked github repository is private you need to follow the steps [here](cr_secret.md) 
 
 ## Deploy Application to Tanzu Community Edition
-1. Run the following commands
+1. Update **USERNAME** and **TAG** in file `yaml/deploy/demo-app.yaml` with your github username and the lastest workflow run 
+2. Run the following commands
     ```
     kubectl apply -f yaml/deploy/demo-app.yaml
     kubectl  port-forward svc/demo-app-service 8080:80
     ```
-2. Check your application http://localhost:8080
+3. Check your application http://localhost:8080
 
 ---
 ---
