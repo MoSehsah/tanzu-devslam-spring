@@ -26,7 +26,7 @@ jobs:
         distribution: 'temurin'
         cache: maven
     - name: Build with Maven
-      run: mvn -B -DskipTests -Drevision=latest spring-boot:build-image --file demo-app/pom.xml
+      run: mvn -B -DskipTests -Drevision={{ env.GITHUB_RUN_NUMBER }} spring-boot:build-image --file demo-app/pom.xml
 
     - name: Log in to the Container registry
       uses: docker/login-action@f054a8b539a109f9f41c372932f1ae047eff08c9
@@ -34,9 +34,7 @@ jobs:
         registry: ${{ env.REGISTRY }}
         username: ${{ github.actor }}
         password: ${{ secrets.GITHUB_TOKEN }}
-    - name: View Existing Images
-      run: docker images
     - name: Tag Container Image
-      run: docker tag docker.io/${{ env.IMAGE_NAME }}:latest ${{ env.REGISTRY }}/${{ env.GH_USER }}/${{ env.IMAGE_NAME }}:latest
+      run: docker tag docker.io/${{ env.IMAGE_NAME }}:{{ env.GITHUB_RUN_NUMBER }} ${{ env.REGISTRY }}/${{ env.GH_USER }}/${{ env.IMAGE_NAME }}:{{ env.GITHUB_RUN_NUMBER }}
     - name: Push Container Image
-      run: docker push ${{ env.REGISTRY }}/${{ env.GH_USER }}/${{ env.IMAGE_NAME }}:latest
+      run: docker push ${{ env.REGISTRY }}/${{ env.GH_USER }}/${{ env.IMAGE_NAME }}:{{ env.GITHUB_RUN_NUMBER }}
