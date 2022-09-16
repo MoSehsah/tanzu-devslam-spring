@@ -52,6 +52,8 @@ jobs:
 #           push: true
 #           tags: ${{ steps.meta.outputs.tags }}
 #           labels: ${{ steps.meta.outputs.labels }}
+      - name: View Existing Images
+        run: docker images
       - name: Tag Container Image
         run: docker tag docker.io/${{ env.IMAGE_NAME }}:latest ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:latest
       - name: Push Container Image
