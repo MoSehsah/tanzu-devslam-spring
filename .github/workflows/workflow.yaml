@@ -53,6 +53,6 @@ jobs:
 #           tags: ${{ steps.meta.outputs.tags }}
 #           labels: ${{ steps.meta.outputs.labels }}
       - name: Tag Container Image
-        run: docker tag ${{ env.IMAGE_NAME }}:latest ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:latest
+        run: docker tag docker.io/${{ env.IMAGE_NAME }}:latest ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:latest
       - name: Push Container Image
         run: docker push ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:latest
