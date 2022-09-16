@@ -1,0 +1,36 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: demo-app-deployment
+  namespace: default
+spec:
+  selector:
+    matchLabels:
+      app: demo-app
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: demo-app
+    spec:
+      containers:
+        - name: demo-app
+          image: ghcr.io/mosehsah/tanzu-devslam-spring/demo:latest
+      imagePullSecrets:
+      - name: dockerconfigjson-github-com    
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: demo-app-service
+  namespace: default
+  labels:
+    app: demo-app
+spec:
+  ports:
+    - port: 80
+      protocol: TCP
+      targetPort: 8080
+  selector:
+    app: demo-app
+  type: ClusterIP
