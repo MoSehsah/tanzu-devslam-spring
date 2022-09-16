@@ -1,6 +1,3 @@
-# This workflow will build a Java project with Maven, and cache/restore any dependencies to improve the workflow execution time
-# For more information see: https://help.github.com/actions/language-and-framework-guides/building-and-testing-java-with-maven
-
 name: Build Image
 
 on:
@@ -12,7 +9,7 @@ on:
 env:
   REGISTRY: ghcr.io
 #   IMAGE_NAME: ${{ github.repository }}
-  IMAGE_NAME: tanzu-devslam-spring/demo
+  IMAGE_NAME: MoSehsah/tanzu-devslam-spring/demo
 
 jobs:
   build:
