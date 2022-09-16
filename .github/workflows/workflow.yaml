@@ -9,7 +9,8 @@ on:
 env:
   REGISTRY: ghcr.io
 #   IMAGE_NAME: ${{ github.repository }}
-  IMAGE_NAME: mosehsah/tanzu-devslam-spring/demo
+  IMAGE_NAME: tanzu-devslam-spring/demo
+  GH_USER: mosehsah
 
 jobs:
   build:
@@ -36,6 +37,6 @@ jobs:
     - name: View Existing Images
       run: docker images
     - name: Tag Container Image
-      run: docker tag docker.io/${{ env.IMAGE_NAME }}:latest ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:latest
+      run: docker tag docker.io/${{ env.IMAGE_NAME }}:latest ${{ env.REGISTRY }}/${{ env.GH_USER }}/${{ env.IMAGE_NAME }}:latest
     - name: Push Container Image
-      run: docker push ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:latest
+      run: docker push ${{ env.REGISTRY }}/${{ env.GH_USER }}/${{ env.IMAGE_NAME }}:latest
