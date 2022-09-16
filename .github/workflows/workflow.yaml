@@ -35,6 +35,6 @@ jobs:
         username: ${{ github.actor }}
         password: ${{ secrets.GITHUB_TOKEN }}
     - name: Tag Container Image
-      run: docker tag docker.io/${{ env.IMAGE_NAME }}:{{ env.GITHUB_RUN_NUMBER }} ${{ env.REGISTRY }}/${{ env.GH_USER }}/${{ env.IMAGE_NAME }}:{{ env.GITHUB_RUN_NUMBER }}
+      run: docker tag docker.io/${{ env.IMAGE_NAME }}:$GITHUB_RUN_NUMBER ${{ env.REGISTRY }}/${{ env.GH_USER }}/${{ env.IMAGE_NAME }}:$GITHUB_RUN_NUMBER
     - name: Push Container Image
-      run: docker push ${{ env.REGISTRY }}/${{ env.GH_USER }}/${{ env.IMAGE_NAME }}:{{ env.GITHUB_RUN_NUMBER }}
+      run: docker push ${{ env.REGISTRY }}/${{ env.GH_USER }}/${{ env.IMAGE_NAME }}:$GITHUB_RUN_NUMBER
