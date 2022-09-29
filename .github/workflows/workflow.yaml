@@ -5,6 +5,8 @@ on:
     branches:
     - main
 
+# Limit concurrent workflow execution to 1.
+# Running jobs will be canceled in case a new workflow is started.
 concurrency:
   group: ${{ github.workflow }}
   cancel-in-progress: true
@@ -49,7 +51,10 @@ jobs:
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
       - name: Build image
+        # Note: make sure the container image name is lowercase only.
         run: cd app && ./mvnw -B spring-boot:build-image -DskipTests -Dspring-boot.build-image.imageName=$(echo $APP_IMAGE | awk '{print tolower($0)}') -Dspring-boot.build-image.publish=true
         env:
+          # We need to set these properties when using GitHub Actions,
+          # so that Spring Boot can publish the resulting image to GHCR.
           DOCKER_PUBLISH_USERNAME: ${{ github.actor }}
           DOCKER_PUBLISH_PASSWORD: ${{ secrets.GITHUB_TOKEN }}

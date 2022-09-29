@@ -17,7 +17,7 @@ management:
         enabled: true
 
 server:
-  # You can override the server port using an environment variable.
+  # You may override the server port using an environment variable.
   port: ${PORT:8080}
   # Enable graceful shutdown.
   shutdown: graceful
