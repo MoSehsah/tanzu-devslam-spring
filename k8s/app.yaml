@@ -3,6 +3,14 @@ kind: Namespace
 metadata:
   name: tanzu-devslam-spring
 ---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: config
+  namespace: tanzu-devslam-spring
+data:
+  app.message: Hello Devslam!
+---
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -24,7 +32,7 @@ spec:
     spec:
       containers:
       - name: app
-        image: ghcr.io/MoSehsah/tanzu-devslam-spring:latest
+        image: ghcr.io/mosehsah/tanzu-devslam-spring:31
         resources:
           limits:
             memory: 1Gi
@@ -36,6 +44,17 @@ spec:
           httpGet:
             port: 8080
             path: /actuator/health/readiness
+        env:
+          # Read the ConfigMap mounted as a volume under /etc/config.
+          - name: SPRING_CONFIG_IMPORT
+            value: configtree:/etc/config/
+        volumeMounts:
+          - mountPath: /etc/config
+            name: config
+      volumes:
+        - name: config
+          configMap:
+            name: config
 ---
 apiVersion: v1
 kind: Service

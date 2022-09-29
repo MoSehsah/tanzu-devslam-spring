@@ -4,14 +4,13 @@ on:
   push:
     branches:
     - main
-    - aro-wip
 
 concurrency:
   group: ${{ github.workflow }}
   cancel-in-progress: true
 
 env:
-  APP_IMAGE: ghcr.io/MoSehsah/tanzu-devslam-spring
+  APP_IMAGE: ghcr.io/${{ github.repository_owner }}/tanzu-devslam-spring:${{ github.run_number }}
   JAVA_VERSION: 17
 
 jobs:
@@ -50,7 +49,7 @@ jobs:
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
       - name: Build image
-        run: cd app && ./mvnw -B spring-boot:build-image -DskipTests -Dspring-boot.build-image.imageName=$APP_IMAGE -Dspring-boot.build-image.publish=true
+        run: cd app && ./mvnw -B spring-boot:build-image -DskipTests -Dspring-boot.build-image.imageName=$(echo $APP_IMAGE | awk '{print tolower($0)}') -Dspring-boot.build-image.publish=true
         env:
           DOCKER_PUBLISH_USERNAME: ${{ github.actor }}
           DOCKER_PUBLISH_PASSWORD: ${{ secrets.GITHUB_TOKEN }}
