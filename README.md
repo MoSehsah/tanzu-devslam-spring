@@ -13,7 +13,7 @@
 2. Run the following commands
     ```
     kubectl apply -f yaml/deploy/demo-app.yaml
-    kubectl  port-forward svc/app 8080:8800 -n tanzu-devslam-spring
+    kubectl port-forward svc/app 8080:8080 -n tanzu-devslam-spring
     ```
 3. Check your application http://localhost:8080
 
