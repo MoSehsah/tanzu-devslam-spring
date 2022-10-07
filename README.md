@@ -22,4 +22,4 @@
 ## References
 1. Install Docker Desktop [link](https://www.docker.com/products/docker-desktop/)
 2. Install Tanzu Community Edition Extenstion [instructions](https://tanzucommunityedition.io/docs/v0.12/getting-started-docker/#install-the-extension)
-3. Make sure you have JAVA 17 installed (here)[https://www.oracle.com/java/technologies/javase/jdk17-archive-downloads.html]
+3. Make sure you have JAVA 17 installed [here](https://www.oracle.com/java/technologies/javase/jdk17-archive-downloads.html)
