@@ -36,7 +36,7 @@ spec:
       containers:
       - name: app
         # FIXME: update the image name with its tag.
-        image: ghcr.io/mosehsah/tanzu-devslam-spring:31
+        image: ghcr.io/GH_USER/tanzu-devslam-spring:1
         resources:
           limits:
             memory: 1Gi
