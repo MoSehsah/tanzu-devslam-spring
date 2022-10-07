@@ -7,6 +7,6 @@
 7.  Try to build the container locally `mvn spring-boot:build-image`
 8.  Run docker image locally
     ```
-    docker run -d -p 8080:8080 demo:0.0.1-SNAPSHOT  
+    docker run --rm -p 8080:8080 demo:0.0.1-SNAPSHOT  
     ```
 9. Continue Guide [here](../README.md)
